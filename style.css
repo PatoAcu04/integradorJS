@@ -1,0 +1,141 @@
+* {
+  padding: 0;
+  list-style: none;
+  margin: 0;
+  border: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+:root {
+  --principal: #1b3160;
+  --secundario: #bc1623;
+}
+
+.navbar {
+  background-color: var(--principal);
+  box-shadow: 0 5px 10px rgb(60, 60, 60);
+  padding: 0.5rem;
+  display: flex;
+  position: fixed;
+  z-index: 1;
+}
+
+.navbarInfo {
+  text-decoration: none;
+  color: white;
+  padding: 0.2rem;
+}
+
+.todoInfo {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  gap: 2rem;
+  font-size: 16px;
+  align-items: end;
+  flex-wrap: wrap;
+}
+
+.navbarInfo {
+  position: relative;
+}
+
+.navbarInfo:before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  height: 2px;
+  width: 100%;
+  background: #ffffff;
+  transform: scaleX(0);
+  border-radius: 20px;
+  transition: transform 0.1s linear;
+}
+
+.navbarInfo:hover:before {
+  transform: scaleX(1);
+}
+
+.last {
+  background-color: #ffffff;
+  color: black;
+}
+.last:hover {
+  color: black;
+}
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
+  color: var(--secundario);
+}
+
+/* carrusel */
+
+.carrusel-container {
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center;
+  margin: 0 auto; /* Para centrar en la página */
+}
+
+.carrusel {
+  width: 60%;
+  max-width: 120em;
+  overflow: hidden;
+}
+.carrusel .grande {
+  width: 200%;
+  display: flex;
+  flex-wrap: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.5s ease;
+  transform: translateX(0%);
+}
+.carrusel img {
+  width: calc(100% / 2);
+}
+.carrusel .puntos {
+  width: 100%;
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.carrusel .punto {
+  width: 1em;
+  height: 1em;
+  margin: 1em;
+  border-radius: 100%;
+  padding: 3px;
+  background-color: #afafaf9a;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.carrusel .punto.activo {
+  background-color: var(--principal);
+  transition: 0.5s;
+}
+
+.categories {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.category {
+  justify-content: center;
+  align-items: center;
+  background-color: var(--principal);
+  color: white;
+  padding: 5px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.category:hover {
+  background-color: var(--secundario);
+}

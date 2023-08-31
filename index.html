@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NotiWorld</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="/img/microfono solamente.png" />
+  </head>
+  <body>
+    <main>
+      <nav class="navbar">
+        <img src="/img/Sin título-1.png" width="5%" />
+
+        <!--en el menu-label  va a ir el menu-->
+        <div class="menu-label"></div>
+        <ul class="todoInfo">
+          <li><a href="#" class="navbarInfo">Home</a></li>
+          <li><a href="#" class="navbarInfo">Relacionado a Argentina</a></li>
+          <li><a href="#" class="navbarInfo">Temas de hoy</a></li>
+          <li><a href="#" class="navbarInfo">El mundo</a></li>
+          <li><a href="style.css" class="navbarInfo last">Regístrate</a></li>
+        </ul>
+      </nav>
+
+      <h1>Noticias Relacionadas</h1>
+      <div class="carrusel-container">
+        <div class="carrusel">
+          <div class="grande">
+            <img src="https://wallpaperaccess.com/full/9261746.jpg" />
+            <img
+              src="https://img2.rtve.es/imagenes/sevilla-manchester-city-se-ven-caras-supercopa-europa-2023/1692129689141.jpg"
+            />
+            <img
+              src="https://arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/K2LYIVBTINGTXB5CS6KULVVPXE.jpg"
+            />
+            <img
+              src="https://www.veintitres.com.ar/__export/1692032855041/sites/cronica/img/2023/08/14/javier_milei_elecciones_2023_medidas.jpg"
+            />
+          </div>
+
+          <ul class="puntos">
+            <li class="punto activo"></li>
+            <li class="punto"></li>
+            <li class="punto"></li>
+            <li class="punto"></li>
+          </ul>
+        </div>
+      </div>
+      <div class="categories">
+        <button class="category active">Todas🔎</button>
+        <button class="category" data-category="deportes">Deportes⚽</button>
+        <button class="category" data-category="videojuegos">
+          Videojuegos🎮
+        </button>
+        <button class="category" data-category="politica">Política🤵</button>
+      </div>
+
+      <!--acá se van a poner los datos que filtre el usuario-->
+      <div class="productsContainer"></div>
+    </main>
+    <footer>
+      <h3>Contactanos</h3>
+      <p></p>
+    </footer>
+
+    <script src="index.js"></script>
+    <script src="data.js"></script>
+  </body>
+</html>
