@@ -1,7 +1,7 @@
 const grande = document.querySelector(".grande");
 const punto = document.querySelectorAll(".punto");
 const productsContainer = document.querySelector(".productsContainer");
-const categoriesContainer = document.querySelector(".categories");
+const categories = document.querySelector(".categories");
 const categoriesList = document.querySelectorAll(".category");
 const menuBtn = document.querySelector(".menu-label");
 const barsMenu = document.querySelector(".todoInfo");
@@ -31,33 +31,20 @@ punto.forEach((cadaPunto, i) => {
 
 //funcion generadora para cada card
 
-const createProductTemplate = (news) => {
+const createProductTemplate = (news, user) => {
   const { id, name, userImg, cardImg } = news;
   return `
     <div class="product">
-      <img src="${cardImg}" alt="${name}" />
+      
       <div class="product-info">
         <div class="product-top">
           <h3>${name}</h3>
-          <p>Oferta actual</p>
+          <img src="${cardImg}" alt="${name}"/>
         </div>
-        <div class="product-mid">
-          <div class="product-user">
-            <img src="${userImg}" alt="usuario" />
-            <p>${user}</p>
-          </div>
-        </div>
-        <div class="product-bot">
-          <div class="product-offer">
-            <div class="offer-time">
-              <img src="./assets/img/fire.png" alt="" />
-              <p>05:12:07</p>
-            </div>
             <button class="btn-add"
               data-id="${id}"
               data-name="${name}"
-              data-bid="${bid}"
-              data-img="${cardImg}">Agregar</button>
+              data-img="${cardImg}">❤️</button>
           </div>
         </div>
       </div>
@@ -67,7 +54,64 @@ const createProductTemplate = (news) => {
 
 const renderProducts = (productsList) => {
   const productsContainer = document.querySelector(".productsContainer");
-  productsContainer.innerHTML += productsList
+  productsContainer.innerHTML = productsList
     .map(createProductTemplate)
     .join("");
 };
+renderProducts(productsData);
+
+const changeBtnActiveState = (selectedCategory) => {
+  const categories = [...categoriesList];
+  categories.forEach((categoryBtn) => {
+    if (categoryBtn.dataset.category !== selectedCategory) {
+      categoryBtn.classList.remove("active");
+      return;
+    }
+    categoryBtn.classList.add("active");
+  });
+};
+
+const changeFilterState = (btn) => {
+  appState.activeFilter = btn.dataset.category;
+  changeBtnActiveState(appState.activeFilter);
+  setShowMoreVisibility(appState.activeFilter);
+};
+
+const isInactiveFilterBtn = (element) => {
+  return (
+    element.classList.contains("category") &&
+    !element.classList.contains("active")
+  );
+};
+
+const applyFilter = (event) => {
+  const { target } = event;
+  console.log(target);
+  if (!isInactiveFilterBtn(target)) return;
+  productsContainer.innerHTML = "";
+
+  changeFilterState(target);
+  if (appState.activeFilter) {
+    renderFilteredProducts();
+    appState.currentProductsIndex = 0;
+    return;
+  }
+
+  renderProducts(appState.products[0]);
+};
+
+const renderFilteredProducts = (selectedCategory) => {
+  const filteredProducts = productsData.filter(
+    (product) => product.category === selectedCategory
+  );
+  renderProducts(filteredProducts);
+};
+
+categories.addEventListener("click", applyFilter);
+function divideProductsInParts(products, chunkSize) {
+  const dividedProducts = [];
+  for (let i = 0; i < products.length; i += chunkSize) {
+    dividedProducts.push(products.slice(i, i + chunkSize));
+  }
+  return dividedProducts;
+}
