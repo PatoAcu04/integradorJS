@@ -74,7 +74,6 @@ const changeBtnActiveState = (selectedCategory) => {
 const changeFilterState = (btn) => {
   appState.activeFilter = btn.dataset.category;
   changeBtnActiveState(appState.activeFilter);
-  setShowMoreVisibility(appState.activeFilter);
 };
 
 const isInactiveFilterBtn = (element) => {
@@ -86,13 +85,12 @@ const isInactiveFilterBtn = (element) => {
 
 const applyFilter = (event) => {
   const { target } = event;
-  console.log(target);
   if (!isInactiveFilterBtn(target)) return;
   productsContainer.innerHTML = "";
 
   changeFilterState(target);
   if (appState.activeFilter) {
-    renderFilteredProducts();
+    renderFilteredProducts(appState.activeFilter);
     appState.currentProductsIndex = 0;
     return;
   }
